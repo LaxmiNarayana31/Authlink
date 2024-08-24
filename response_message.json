@@ -1,0 +1,57 @@
+{
+    "user_register" : "User registered successfully. A registration email has been sent",
+    "user_already_exists" : "User already exist",
+    "invalid_role_id" : "Invalid role id | Role id is either 1 or 2",
+    "user_list_found" :"User list found successfully",
+    "user_list_not_found" : "User list not found",
+    "get_user_by_id" : "User Found Successfully",
+    "get_user_by_id_not_found" : "User with id is not available",
+    "delete_user_by_id" : "User deleted successfully",
+    "delete_user_by_id_not_found" : "User Not Found",
+    "update_current_logged_user" : "User updated successfully",
+    "update_current_logged_user_error" : "Failed to update user information",
+
+    "company_register" : "New company registered successfully",
+    "company_already_exists" : "Company already exist",
+    "create_not_authorized" : "Not authorized to create a company",
+    "view_not_authorized" : "Not authorized to view company list",
+    "not_allowed_to_view" : "Not authorized to view a company",
+    "delete_not_authorized" : "Not authorized to delete a company",
+    "update_not_authorized" : "Not authorized to update a company",
+    "company_list_found" :"Company list found successfully",
+    "company_list_not_found" : "Company list not found",
+    "get_company_by_id" : "Company Found Successfully",
+    "get_company_by_id_not_found" : "Company with id is not available",
+    "delete_company_by_id" : "Company deleted successfully",
+    "delete_company_by_id_not_found" : "Company Not Found",
+    "update_company_by_id" : "Company updated successfully",
+    "update_company_by_id_not_found" : "Failed to update company infornmation",
+
+
+    "user_login" : "Logged in successfully",
+    "user_not_authorized" : "Invalid Credentials",
+    "access_token_not_found" : "Provide the access token",
+    "user_info_found" : "User information found successfully",
+    "invalid_token" : "Invalid access token",
+
+    "sent_otp" : "OTP sent successfully",
+    "sent_otp_error" : "Invalid Email",
+    "otp_verified" : "OTP verified successfully",
+    "otp_verify_error" : "Verification was Unsuccessful;",
+
+    "change_password_success" : "Password changed successfully",
+    "change_password_error" : "Wrong OTP",
+
+    "wrong_token": "Invalid token",
+    "user_not_found": "User not found",
+    "not_authorized": "Not authorized to add user in a company",
+    "company_not_found": "Company not found",
+    "user_to_add_not_found": "User to add not found",
+    "user_added_to_company": "User successfully added to the company",
+    "user_already_in_company" : "User already exist in the company",
+    "user_in_another_company" : "User already exist in another company",
+    "users_found" : "User found successfully in this company",
+    "no_users_found" : "No user is found in this company",
+
+    "company_details_fetched": "Successfully get company information"
+}
