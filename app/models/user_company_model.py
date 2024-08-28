@@ -12,4 +12,3 @@ class UserCompany(Base):
     # Relationships
     user = relationship('UserModel', back_populates = 'user_companies')
     company = relationship('CompanyModel', back_populates = 'company_users')
-
