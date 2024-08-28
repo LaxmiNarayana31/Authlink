@@ -1,3 +1,4 @@
 .env
 Pipfile.lock
 uploads/*/
+__pycache__
