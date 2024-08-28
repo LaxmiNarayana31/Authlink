@@ -1,9 +1,10 @@
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import re
 from requests import Session
 from app.auth.jwt_handler import decode_jwt_token
 from app.helper.email_config import email_settings
-from fastapi import Depends, HTTPException, Header, Request
+from fastapi import Depends, HTTPException, Request
 import smtplib
 import random
 from app.models.user_model import UserModel
@@ -90,3 +91,10 @@ class Helper:
         except Exception as e:
             print("Exception occurred:", str(e))
     
+     # email validator 
+    def is_valid_email(email: str):
+        try:
+            email_regex = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+            return re.match(email_regex, email) is not None
+        except Exception as e:
+            print("Exception occurred:", str(e))
