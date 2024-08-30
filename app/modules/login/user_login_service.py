@@ -7,10 +7,15 @@ from app.models.user_company_model import UserCompany
 from app.models.user_model import UserModel
 from app.modules.company.company_service import BASE_URL
 from app.schemas.user_response_schema import CompanyDetailSchema
+from app.helper.email_sender import Helper
+
 
 # user login
 def login_user(email: str, password: str, db: Session):
     try:
+        if not Helper.is_valid_email(email):
+            return 1
+        
         user = db.query(UserModel).filter(UserModel.email == email).first()
 
         if not user or not Hash.verify(user.password, password):
@@ -38,6 +43,9 @@ def login_user(email: str, password: str, db: Session):
 # get user information by access token
 def userinfo_by_token(token: str, db: Session):
     try:
+        if not token:
+            return 1  # token was not found
+        
         email = decode_jwt_token(token)
         
         if email is None:
