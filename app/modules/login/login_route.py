@@ -14,7 +14,8 @@ router = APIRouter(prefix="/user", tags=["Login"])
 @router.post('/login', summary="User login", response_model = ResponseSchema[LoginResponseSchema])
 def login_user(login_data: LoginSchema, db: Session = Depends(get_db)):
     logged_user = user_login_service.login_user(email = login_data.email, password = login_data.password, db = db)
-
+    if logged_user == 1:
+        return ResponseSchema(status = False, response = msg['invalid_email_format'], data = None)
     if logged_user is not None:
         return ResponseSchema(status = True, response = msg['user_login'], data = logged_user)
     else:
@@ -23,16 +24,13 @@ def login_user(login_data: LoginSchema, db: Session = Depends(get_db)):
 
 
 # Get user information by access token
-@router.get("/info", summary="Get User Information", response_model = ResponseSchema[UserInformationSchema])
+@router.get("/info", summary="Get User Information", response_model=ResponseSchema[UserInformationSchema])
 def get_user_info(token: Optional[str] = Header(None), db: Session = Depends(get_db)):
-
-    if not token:
-        return ResponseSchema(status = False, response = msg['access_token_not_found'], data = None)
-
-    user_info = user_login_service.userinfo_by_token(token, db)
+    user_info = user_login_service.userinfo_by_token(token=token, db=db)
     
-    if user_info is not None:
-        return ResponseSchema(status = True, response = msg['user_info_found'], data = user_info)
+    if user_info == 1:
+        return ResponseSchema(status=False, response=msg['access_token_not_found'], data=None)
+    elif user_info:
+        return ResponseSchema(status=True, response=msg['user_info_found'], data=user_info)
     else:
-        return ResponseSchema(status = False, response = msg["invalid_token"], data = None)
-                              
+        return ResponseSchema(status=False, response=msg["invalid_token"], data=None)
