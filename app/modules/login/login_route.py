@@ -17,9 +17,9 @@ def login_user(login_data: LoginSchema, db: Session = Depends(get_db)):
     if logged_user == 1:
         return ResponseSchema(status = False, response = msg['invalid_email_format'], data = None)
     if logged_user is not None:
-        return ResponseSchema(status = True, response = msg['user_login'], data = logged_user)
+        return ResponseSchema(status = True, response = msg['user_loggedin'], data = logged_user)
     else:
-        return ResponseSchema(status = False, response = msg['user_not_authorized'], data = None)
+        return ResponseSchema(status = False, response = msg['invalid_credentials'], data = None)
 
 
 
