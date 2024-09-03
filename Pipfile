@@ -18,6 +18,7 @@ fastapi = "*"
 uvicorn = "*"
 sqlalchemy = "*"
 pillow = "*"
+bcrypt = "*"
 
 [dev-packages]
 
