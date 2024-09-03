@@ -17,6 +17,7 @@ python-multipart = "*"
 fastapi = "*"
 uvicorn = "*"
 sqlalchemy = "*"
+pillow = "*"
 
 [dev-packages]
 
