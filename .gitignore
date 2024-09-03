@@ -3,3 +3,4 @@ Pipfile.lock
 uploads/*/
 __pycache__
 .vscode
+assets/*/

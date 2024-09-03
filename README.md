@@ -1,6 +1,6 @@
-# FastAPI Application
+# FastAPI UCM
 
-This repository contains a FastAPI application for managing users, companies, and authentication, including features like JWT authentication, user management, and company management. 
+FastAPI UCM is a comprehensive API built with FastAPI that facilitates user and company management functionalities. This project includes endpoints for managing users, companies, and related details, making it a powerful tool for handling various aspects of user and company data within applications.
 
 ## Features
 
@@ -92,8 +92,8 @@ This repository contains a FastAPI application for managing users, companies, an
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/LaxmiNarayana31/fastapi-user-company-service.git
-    cd fastapi-user-company-service
+    git clone https://github.com/LaxmiNarayana31/fastapi-ucm.git
+    cd fastapi-ucm
     ```
 
 2. **Create a virtual environment and activate it:**
@@ -170,5 +170,7 @@ This repository contains a FastAPI application for managing users, companies, an
 
 - **Change Password:** `POST /forgot_password/change_password`
 
+
+![FastAPI UCM Overview](assets/overview.png)
 
 Feel free to adjust any sections to better fit your project’s specifics or any additional details you want to include.
