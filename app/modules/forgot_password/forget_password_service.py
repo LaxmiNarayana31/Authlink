@@ -48,7 +48,7 @@ def send_forgot_password_otp(email: str, background_tasks: BackgroundTasks, db: 
 def verify_otp(email: str, otp: int, db: Session):
     try:
         if not Helper.is_valid_email(email):
-            return 1
+            return 1 # Invalid email format
         
         stored_data = otp_storage.get(email)
 
@@ -58,10 +58,12 @@ def verify_otp(email: str, otp: int, db: Session):
         stored_otp, expiration_time = stored_data
 
         if datetime.now() > expiration_time:
-            return {"message":"OTP was expired"} 
+            return 2  # OTP expired
         
-        if str(otp) == str(stored_otp):
-            return {"message": "OTP is valid"}
+        if str(otp) != str(stored_otp):
+            return 3  # Invalid OTP
+        
+        return 4  # OTP is valid
        
     except Exception as e:
         print("Exception Occurred:", str(e))
@@ -74,33 +76,34 @@ def verify_otp(email: str, otp: int, db: Session):
 def change_password(email: str, otp: int, new_password: str, confirm_password: str, db: Session):
     try:
         if not Helper.is_valid_email(email):
-            return 1
+            return 1 # Invalid email format 
         
         stored_data = otp_storage.get(email)
         if not stored_data:
-            return {"message": "Invalid OTP"}
+            return 2  # Invalid OTP
 
         stored_otp, expiration_time = stored_data
         if datetime.now() > expiration_time:
-            return {"message": "OTP has expired"}
+            return 3  # OTP expired
 
         if str(otp) != str(stored_otp):
-            return {"message": "OTP does not match"}
+            return 4  # Invalid OTP/OTP does not match
 
         get_db_user = db.query(UserModel).filter(UserModel.email == email).first()
         
         if not get_db_user:
-            return {"message": "User not found"}
+            return 5  # User not found
 
         if new_password != confirm_password:
-            return {"message": "new password and confirm password do not match"}
+            return 6  # Password mismatch
+            # return {"message": "new password and confirm password do not match"}
 
         get_db_user.password = Hash.bcrypt(new_password)
         db.commit()
 
         del otp_storage[email] 
 
-        return {"message": "Password changed successfully"}
+        return 7  # Password changed successfully
         
     except Exception as e:
         print("Exception Occurred:", str(e))
