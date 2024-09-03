@@ -27,30 +27,36 @@ def otp_verification(request: VerifyForgotPasswordOTPSchema, db: Session = Depen
 
     if otp_verify == 1:
         return ResponseSchema(status = False, response = msg['invalid_email_format'], data = None)
-    if otp_verify is not None:
-        response_data = VerifyOtpResponseSchema(message="OTP is valid")
-        return ResponseSchema(status = True, response = msg['otp_verified'], data = response_data)
+    elif otp_verify == 2:
+        return ResponseSchema(status = False, response = msg['otp_expired'], data = None)
+    elif otp_verify == 3:
+        return ResponseSchema(status = False, response = msg['invalid_otp'], data = None)
+    elif otp_verify == 4:
+        return ResponseSchema(status = True, response = msg['otp_verified'], data = otp_verify)
     else:
-        response_data = VerifyOtpResponseSchema(message="Invalid OTP")
-        return ResponseSchema(status = False, response = msg['otp_verify_error'], data = response_data)
+        return ResponseSchema(status = False, response = msg['otp_verify_error'], data = None)
 
 
-
+ 
 # change user password
 @router.post("/change_password", summary="Change user password", response_model = ResponseSchema[ChangePasswordResponseSchema])
 def change_user_password(request: ChangePasswordSchema, db: Session = Depends(get_db)):
     password_change = forget_password_service.change_password(email = request.email, otp = request.otp, new_password = request.new_password, confirm_password = request.confirm_password, db = db)
 
     if password_change == 1:
-        return ResponseSchema(status = False, response = msg['invalid_email_format'], data = None)
-    if password_change is not None:
-        message = password_change.get("message")
-        response_data = ChangePasswordResponseSchema(email = request.email, message = message)
-        if message == msg['change_password_success']:
-            return ResponseSchema(status = True, response = message, data = response_data)
-        else:
-            return ResponseSchema(status = False, response = message, data = response_data)
+        return ResponseSchema(status=False, response=msg['invalid_email_format'], data=None)
+    elif password_change == 2:
+        return ResponseSchema(status=False, response=msg['invalid_otp'], data=None)
+    elif password_change == 3:
+        return ResponseSchema(status=False, response=msg['otp_expired'], data=None)
+    elif password_change == 4:
+        return ResponseSchema(status=False, response=msg['invalid_otp'], data=None)
+    elif password_change == 5:
+        return ResponseSchema(status=False, response=msg['user_not_found'], data=None)
+    elif password_change == 6:
+        return ResponseSchema(status=False, response=msg['password_mismatch'], data=None)
+    elif password_change == 7:
+        return ResponseSchema(status=True, response=msg['change_password_success'], data=password_change)
     else:
-        response_data = ChangePasswordResponseSchema(email = request.email, message = "Password change failed.")
-        return ResponseSchema(status = False, response = msg['change_password_error'], data = response_data)
+        return ResponseSchema(status=False, response=msg['change_password_error'], data=None)
     
