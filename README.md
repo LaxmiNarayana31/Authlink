@@ -1,6 +1,6 @@
-# FastAPI UCM
+# AuthLink System
 
-FastAPI UCM is a comprehensive API built with FastAPI that facilitates user and company management functionalities. This project includes endpoints for managing users, companies, and related details, making it a powerful tool for handling various aspects of user and company data within applications.
+AuthLink System is a comprehensive API built with FastAPI that facilitates user and company management functionalities. This project includes endpoints for managing users, companies, and related details, making it a powerful tool for handling various aspects of user and company data within applications.
 
 ## Features
 
