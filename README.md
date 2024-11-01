@@ -92,8 +92,8 @@ AuthLink System is a comprehensive API built with FastAPI that facilitates user 
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/LaxmiNarayana31/fastapi-ucm.git
-    cd fastapi-ucm
+    git clone https://github.com/LaxmiNarayana31/user-company-management-api.git
+    cd user-company-management-api
     ```
 
 2. **Create a virtual environment and activate it:**
