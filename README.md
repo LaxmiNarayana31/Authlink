@@ -92,7 +92,7 @@ AuthLink System is a comprehensive API built with FastAPI that facilitates user 
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/LaxmiNarayana31/user-company-management-api.git
+    git clone https://github.com/LaxmiNarayana31/authlink-system.git
     cd user-company-management-api
     ```
 
