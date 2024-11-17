@@ -93,7 +93,7 @@ AuthLink System is a comprehensive API built with FastAPI that facilitates user 
 
     ```bash
     git clone https://github.com/LaxmiNarayana31/authlink-system.git
-    cd user-company-management-api
+    cd authlink-system
     ```
 
 2. **Create a virtual environment and activate it:**
